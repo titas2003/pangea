@@ -1,5 +1,5 @@
 const express = require('express');
-const { signUp, verifyEmail } = require('../controllers/authController');
+const { signUp, verifyEmail, signIn } = require('../controllers/authController');
 
 const router = express.Router();
 
@@ -8,5 +8,7 @@ router.post('/signup', signUp);
 
 // Email Verification Route
 router.get('/verify-email', verifyEmail);
+
+router.post('/signin', signIn);
 
 module.exports = router;

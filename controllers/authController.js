@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const sendEmail = require('../services/emailService');
 const { JWT_SECRET } = require('../config/env');
+const responseHelper = require('../utils/responseHelper');
 
 exports.signUp = async (req, res) => {
     try {
@@ -88,3 +89,53 @@ exports.verifyEmail = async (req, res) => {
     }
 };
 
+//SIGN IN WITH PASSWD
+
+exports.signIn = async (req, res) => {
+    const { email, password } = req.body;
+
+    // 1. Validate input
+    if (!email || !password) {
+        return responseHelper(res, 400, "Email and password are required.");
+    }
+
+    try {
+        // 2. Find user by email
+        const user = await User.findOne({ email });
+        if (!user) {
+            return responseHelper(res, 404, "User not found.");
+        }
+
+        // 3. Check if the password matches
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return responseHelper(res, 401, "Invalid credentials.");
+        }
+
+        // 4. Check if the user is verified
+        if (!user.isVerified) {
+            return responseHelper(res, 403, "Email not verified. Please verify your email.");
+        }
+
+        // 5. Generate JWT token
+        const token = jwt.sign(
+            { id: user._id },
+            JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
+        // 6. Respond with user details and token
+        return responseHelper(res, 200, "Sign-in successful.", {
+            token,
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                phone: user.phone,
+            },
+        });
+    } catch (error) {
+        console.error("Sign-In Error:", error);
+        return responseHelper(res, 500, "Server error.");
+    }
+};
