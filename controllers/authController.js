@@ -40,7 +40,7 @@ exports.signUp = async (req, res) => {
         );
 
         // Send verification email
-        const verificationUrl = `http://localhost:3000/api/auth/verify-email?token=${verificationToken}`;
+        const verificationUrl = `http://192.168.0.209:3000/api/auth/verify-email?token=${verificationToken}`;
         const emailHtml = `
             <h1>Welcome to Pangea</h1>
             <p>Hi ${name},</p>
