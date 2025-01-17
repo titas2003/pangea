@@ -1,9 +1,9 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-const sendEmail = require('../services/emailService');
-const { JWT_SECRET } = require('../config/env');
-const responseHelper = require('../utils/responseHelper');
+const User = require('../../models/customer/User');
+const sendEmail = require('../../services/emailService');
+const { JWT_SECRET } = require('../../config/env');
+const responseHelper = require('../../utils/responseHelper');
 
 exports.signUp = async (req, res) => {
     try {

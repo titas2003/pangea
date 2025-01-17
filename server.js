@@ -1,6 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/db');
-const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./routes/customer/authRoutes');
 const { PORT } = require('./config/env');
 
 // Initialize the app
