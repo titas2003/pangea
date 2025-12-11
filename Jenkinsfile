@@ -31,6 +31,7 @@ pipeline {
                     sh '''
                         ls -l
                         pwd
+                        ip a
                         echo "Building Docker image..."
                         sudo docker build -t hellopipe:v1.${BUILD_NUMBER} .
 
