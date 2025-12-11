@@ -22,5 +22,18 @@ pipeline {
                 git branch: "${GIT_BRANCH}", credentialsId: "${GITHUB_USER}", url: "${GIT_URL}"
             }
         }
+
+        stage("Build docker image") {
+            steps {
+                withCredentials([
+                    usernamePassword(credentialsId: 'titas2003', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')
+                ]){
+                    sh '''
+                        sudo docker build -t projectx:v.${BUILD_NUMBER}
+                        echo '${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin
+                    '''
+                }
+            }
+        }
     }
 }
