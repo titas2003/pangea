@@ -1,11 +1,11 @@
-services:
-    database:
-        image: docker.io/mongodb/mongodb-enterprise-server
-        container_name: pangea-db
-        environment:
-            - MONGO_INITDB_ROOT_USERNAME=admin
-            - MONGO_INITDB_ROOT_PASSWORD=admin
-        ports:
-            - "27017:27017"
-        volumes:
-            - /home/student/database/pangea-db:/data/db:z
+# services:
+#     database:
+#         image: docker.io/mongodb/mongodb-enterprise-server
+#         container_name: pangea-db
+#         environment:
+#             - MONGO_INITDB_ROOT_USERNAME=admin
+#             - MONGO_INITDB_ROOT_PASSWORD=admin
+#         ports:
+#             - "27017:27017"
+#         volumes:
+#             - /home/student/database/pangea-db:/data/db:z
