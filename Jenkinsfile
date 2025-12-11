@@ -9,6 +9,7 @@ pipeline {
     environment {
         GIT_URL = "https://github.com/titas2003/pangea.git"
         GIT_BRANCH = "main"
+        GITHUB_USER  = "github_titas"
         PORT = 3000
         MONGO_URI = "mongodb+srv://admin:admin@aws-dmo.bsoplpt.mongodb.net/projectX"
         JWT_SECRET = "secret"
