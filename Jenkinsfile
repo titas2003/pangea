@@ -29,6 +29,8 @@ pipeline {
                     usernamePassword(credentialsId: 'titas2003', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')
                 ]) {
                     sh '''
+                        ls -l
+                        pwd
                         echo "Building Docker image..."
                         sudo docker build -t hellopipe:v1.${BUILD_NUMBER} .
 
