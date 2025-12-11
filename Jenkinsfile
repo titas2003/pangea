@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        label {
-            label 'slave-01'
-            retries 2
-        }
-    }
+    agent { label 'slave-01' }
     environment {
         GIT_URL = "https://github.com/titas2003/pangea.git"
         GIT_BRANCH = "main"
